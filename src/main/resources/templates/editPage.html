@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактирование пользователя</title>
+</head>
+<body>
+<h2>Информация о пользователе</h2>
+
+<form action="#" th:action="@{/admin/edit}" th:object="${user}" method="post">
+    User ID: <span th:text="${user.id}"/>
+    <input type="hidden" name="id" id="id" th:field="*{id}">
+
+    <label for="userName">UserName</label>
+    <input type="text" name="userName" id="userName" th:field="*{username}">
+
+    <label for="password">Password</label>
+    <input type="text" name="password" id="password" th:field="*{password}">
+
+    <label for="email">Email</label>
+    <input type="email" name="email" id="email" th:field="*{email}">
+
+    <div th:each="rol : ${roles}" >
+        <label th:for="${rol.name()}" th:text="${rol.name()}"></label>
+        <input th:type="checkbox" th:name="${rol.name()}" th:field="*{role}" th:value="${rol.name()}"> </label>
+    </div>
+    <input type="submit" value="Обновить">
+</form>
+</body>
+</html>

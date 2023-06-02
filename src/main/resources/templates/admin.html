@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+    <meta charset="UTF-8">
+    <title>Информация о пользователях. Админ панель</title>
+</head>
+<body>
+<h3>Таблица пользователей</h3>
+<table style="border: 3px solid black">
+  <tbody>
+  <tr style="border: 2px solid black">
+    <th style="border: 1px solid gray">id</th>
+    <th style="border: 1px solid #808080">name</th>
+    <th style="border: 1px solid gray">password</th>
+    <th style="border: 1px solid gray">email</th>
+    <th style="border: 1px solid gray">phone</th>
+    <th style="border: 1px solid gray">roles</th>
+    <th style="border: 1px solid gray">action</th>
+  </tr>
+  <th:block th:each="user : ${users}">
+    <tr style="border: 2px solid black">
+      <td style="border: 1px solid gray" th:text="${user.id}" />
+      <td style="border: 1px solid gray" th:text="${user.username}" />
+      <td style="border: 1px solid gray" th:text="${user.password}" />
+      <td style="border: 1px solid gray" th:text="${user.email}" />
+      <td style="border: 1px solid gray" th:text="${user.number}" />
+      <td style="border: 1px solid gray" th:text="${user.role}" />
+      <td style="border: 1px solid gray">
+        <a th:href="@{admin/edit/{userId}(userId = ${user.id})}">edit</a>
+        <a th:href="@{admin/delete/{userId}(userId = ${user.id})}">delete</a>
+      </td>
+    </tr>
+  </th:block>
+  </tbody>
+</table>
+
+<h2>Создать нового пользователя</h2>
+<a th:href="@{admin/add}"><button>Создать</button></a>
+</body>
+</html>

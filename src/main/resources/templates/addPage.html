@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Создание пользователя</title>
+</head>
+<body>
+<h2>Информация о пользователе</h2>
+
+<form action="#" th:action="@{/admin/add}" th:object="${user}" method="post">
+
+    <label for="userName">UserName</label>
+    <input type="text" name="userName" id="userName" th:field="*{username}">
+
+    <label for="firstName">firstName</label>
+    <input type="text" name="firstName" id="firstName" th:field="*{firstName}">
+
+    <label for="lastName">lastName</label>
+    <input type="text" name="lastName" id="lastName" th:field="*{lastName}">
+
+    <label for="password">Password</label>
+    <input type="text" name="password" id="password" th:field="*{password}">
+
+    <label for="email">Email</label>
+    <input type="email" name="email" id="email" th:field="*{email}">
+
+    <label for="number">Phone</label>
+    <input type="number" name="number" id="number" th:field="*{number}">
+
+    <div th:each="rol : ${roles}" >
+        <label th:for="${rol.name()}" th:text="${rol.name()}"></label>
+        <input th:type="checkbox" th:name="${rol.name()}" th:field="*{role}" th:value="${rol.name()}"> </label>
+    </div>
+    <input type="submit" value="Создать">
+</form>
+</body>
+</html>
