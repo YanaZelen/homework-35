@@ -31,10 +31,6 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
               .and()
               .logout()
               .permitAll();
-    }
-    catch (InternalAuthenticationServiceException e) {
-      System.out.println("Введены не верные данные");
-    }
   }
 
   @Override
