@@ -27,7 +27,7 @@
       <td style="border: 1px solid gray" th:text="${user.role}" />
       <td style="border: 1px solid gray">
         <a th:href="@{admin/edit/{userId}(userId = ${user.id})}">edit</a>
-        <a th:href="@{admin/delete/{userId}(userId = ${user.id})}">delete</a>
+        <a id="delete" th:href="@{admin/delete/{userId}(userId = ${user.id})}">delete</a>
       </td>
     </tr>
   </th:block>
@@ -36,5 +36,8 @@
 
 <h2>Создать нового пользователя</h2>
 <a th:href="@{admin/add}"><button>Создать</button></a>
+
+<script src="js/alert.js"></script>
+
 </body>
 </html>

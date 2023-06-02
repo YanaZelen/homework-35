@@ -9,6 +9,7 @@ import ru.maxima.homework35.entity.User;
 import ru.maxima.homework35.repo.UserRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -18,7 +19,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
   @Override
   public User getById(Long id) {
     return userRepository.findById(id)
-        .orElseThrow(() -> new RuntimeException("Не удалось найти пользователя по id: " + id));
+        .orElseThrow(() -> new RuntimeException("Не удалось найти пользователя по id: " + id + " Попробуйте снова."));
   }
 
   @Override
@@ -45,6 +46,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
   @Override
   public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
     return userRepository.findUserByEmail(email)
-        .orElseThrow(() -> new RuntimeException("Не удалось найти пользователя по email: " + email));
+        .orElseThrow(() -> new RuntimeException("Не удалось найти пользователя по email: " + email + " Попробуйте снова."));
+  }
+  public Optional<User> findUserByEmail(String email) {
+    return userRepository.findUserByEmail(email);
   }
 }
